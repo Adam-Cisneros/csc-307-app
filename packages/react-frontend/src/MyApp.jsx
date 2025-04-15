@@ -9,7 +9,7 @@ function MyApp() {
         postUser(person)
             .then((res) => {
                 if (res.status === 201) {
-                    setCharacters(res.json())
+                    setCharacters(res.json());
                 }
             })
             .catch((error) => {
@@ -64,7 +64,7 @@ function MyApp() {
           .catch((error) => {
             console.log(error);
           });
-    }, []);
+    }, [characters]);
 
     return (
         <div className="container">
