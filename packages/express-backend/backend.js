@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import cors from "cors";
 
 const app = express();
@@ -65,6 +65,8 @@ app.get("/", (req, res) => {
 });
 
 const addUser = (user) => {
+    // Makes three-digit random id
+    user.id = ""+Math.floor(Math.random()*11)+Math.floor(Math.random()*11)+Math.floor(Math.random()*11);
     users["users_list"].push(user);
     return user;
 }
@@ -104,8 +106,8 @@ app.get("/users/:id", (req, res) => {
 
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
-    res.send();
+    user = addUser(userToAdd);
+    res.status(201).send(user.json);
 });
 
 app.delete("/users/:id", (req, res) => {
@@ -114,7 +116,7 @@ app.delete("/users/:id", (req, res) => {
     if (result === undefined) {
         res.status(404).send("Resource not found.");
     } else {
-        res.send();
+        res.status(204).send();
     }
 });
 
