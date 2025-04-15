@@ -67,8 +67,7 @@ app.get("/", (req, res) => {
 const addUser = (user) => {
     // Makes three-digit random id
     user.id = ""+Math.floor(Math.random()*11)+Math.floor(Math.random()*11)+Math.floor(Math.random()*11);
-    users["users_list"].push(user);
-    return user;
+    return users["users_list"].push(user);
 }
 
 app.get("/users", (req, res) => {
@@ -106,8 +105,8 @@ app.get("/users/:id", (req, res) => {
 
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    user = addUser(userToAdd);
-    res.status(201).send(user.json);
+    new_users = addUser(userToAdd);
+    res.status(201).send(new_users);
 });
 
 app.delete("/users/:id", (req, res) => {

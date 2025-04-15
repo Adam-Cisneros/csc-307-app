@@ -9,7 +9,7 @@ function MyApp() {
         postUser(person)
             .then((res) => {
                 if (res.status === 201) {
-                    setCharacters([...characters, res.json()]);
+                    setCharacters(res.json())
                 }
             })
             .catch((error) => {
@@ -25,8 +25,6 @@ function MyApp() {
                         return i !== index;
                     });
                     setCharacters(updated);
-                } else if (res.status === 404) {
-                    return;
                 }
             })
             .catch((error) => {
