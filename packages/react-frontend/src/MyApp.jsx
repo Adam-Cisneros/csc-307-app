@@ -7,11 +7,8 @@ function MyApp() {
 
     function updateList(person) {
         postUser(person)
-            .then((res) => {
-                if (res.status === 201) {
-                    setCharacters(res.json());
-                }
-            })
+            .then((res) => res.json())
+            .then((json) => setCharacters([...characters, json]))
             .catch((error) => {
                 console.log(error);
             });
@@ -64,7 +61,7 @@ function MyApp() {
           .catch((error) => {
             console.log(error);
           });
-    }, [characters]);
+    }, []);
 
     return (
         <div className="container">
