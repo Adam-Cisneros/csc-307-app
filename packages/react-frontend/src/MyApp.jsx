@@ -19,7 +19,7 @@ function MyApp() {
     }
 
     function removeOneCharacter(index) {
-        deleteUser(characters[index].id)
+        deleteUser(characters[index]._id)
             .then((res) => {
                 if (res.status === 204) {
                     const updated = characters.filter((character, i) => {
@@ -51,6 +51,7 @@ function MyApp() {
     }
 
     function deleteUser(id) {
+        console.log(id);
         const promise = fetch(`http://localhost:8000/users/${id}`, {
             method: "DELETE"
         });
@@ -61,7 +62,7 @@ function MyApp() {
     useEffect(() => {
         fetchUsers()
           .then((res) => res.json())
-          .then((json) => setCharacters(json["users_list"]))
+          .then((json) => setCharacters(json))
           .catch((error) => {
             console.log(error);
           });
